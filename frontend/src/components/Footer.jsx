@@ -3,13 +3,15 @@ import { assets } from "../assets/assets";
 const Footer = () => {
   return (
     <div
-      className=" flex flex-col gap-2 py-12 px-10  text-white bg-gray-600 mt-[100px]"
+      className=" flex flex-col gap-2 py-12 p-4  text-white bg-slate-700 mt-[100px] w-full"
       id="footer"
     >
       <div className=" flex flex-col gap-8 sm:grid sm:grid-cols-4">
         {/* footer left */}
         <div className="flex flex-col items-start gap-[20px] col-span-2 p-2">
-          <img className="w-[120px]" src={assets.logo} alt="logo" />
+          <h1 className=" text-green-700 font-bold text-2xl italics">
+            TableReady.
+          </h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam
             temporibus quia neque qui quos explicabo architecto mollitia
@@ -35,7 +37,7 @@ const Footer = () => {
             />
           </div>
         </div>
-        {/* footer right */}
+        {/* footer center */}
         <div className="flex flex-col items-start gap-[20px] p-2">
           <h2>COMPANY</h2>
           <ul>
@@ -45,7 +47,7 @@ const Footer = () => {
             <li className=" cursor-pointer mb-[10px]">Privacy policy</li>
           </ul>
         </div>
-        {/* footer center */}
+        {/* footer right */}
         <div className="flex flex-col items-start gap-[20px] p-2">
           <h2>GET IN TOUCH</h2>
           <ul>

@@ -1,28 +1,62 @@
-import { useContext, useState } from "react";
-import { assets } from "../assets/assets";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../Context/StoreContext";
+import { LiaShoppingCartSolid } from "react-icons/lia";
+import { CgProfile } from "react-icons/cg";
+import { BsHandbag } from "react-icons/bs";
+import { TbLogout } from "react-icons/tb";
 
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
+  const [isActive, setIsActive] = useState(false);
 
-  const { getTotalCartAmount } = useContext(StoreContext);
+  const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
+
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken("");
+    navigate("/");
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      window.scrollY > 20 ? setIsActive(true) : setIsActive(false);
+    });
+  }, []);
+
   return (
-    <div className="flex justify-between items-center gap-2 py-[20px] z-20 w-full bg-white">
+    <div
+      className={` ${
+        isActive
+          ? "   bg-white  drop-shadow-md h-[80px]"
+          : "h-[80px] bg-white"
+      } fixed flex justify-between  items-center gap-2 py-4 md:px-8 xl:px-12 z-20 w-full px-2 `}
+    >
       {/* logo */}
       <div className=" w-[120px] xl:w-[140px]">
         <Link to={"/"}>
-          <img src={assets.logo} className=" w-[160px]" alt="logo" />
+          <h1
+            className={`${
+              isActive ? "text-slate-900" : " text-green-700 "
+            } font-extrabold text-xl sm:text-2xl`}
+          >
+            TableReady_Ke.
+          </h1>
         </Link>
       </div>
       {/* navbar menu */}
-      <ul className="hidden gap-1 md:gap-[10px] text-purple-900 text-[18px] md:flex ">
+      <ul
+        className={` ${
+          isActive ? "text-neutral-900" : "text-green-700 "
+        } hidden gap-1 md:gap-[10px] text-[18px]  md:flex `}
+      >
         <Link
           to="/"
           onClick={() => setMenu("home")}
           className={`${
             menu === "home"
-              ? " border border-x-0 border-t-0 border-b-purple-900"
+              ? " border border-x-0 border-t-0 font-bold border-b-purple-900"
               : ""
           } cursor-pointer`}
         >
@@ -33,29 +67,19 @@ const Navbar = ({ setShowLogin }) => {
           onClick={() => setMenu("menu")}
           className={`${
             menu === "menu"
-              ? "border border-x-0 border-t-0 border-b-purple-900"
+              ? "border border-x-0 border-t-0 font-bold border-b-green-900"
               : ""
           } cursor-pointer`}
         >
           menu
         </a>
-        <a
-          href="#app-download"
-          onClick={() => setMenu("mobileApp")}
-          className={`${
-            menu === "mobileApp"
-              ? "border border-x-0 border-t-0 border-b-purple-900"
-              : ""
-          } cursor-pointer`}
-        >
-          mobile-app
-        </a>
+
         <a
           href="#footer"
           onClick={() => setMenu("contactUs")}
           className={`${
             menu === "contactUs"
-              ? "border border-x-0 border-t-0 border-b-purple-900"
+              ? "border border-x-0 border-t-0 font-bold border-b-green-900"
               : ""
           } cursor-pointer`}
         >
@@ -63,31 +87,59 @@ const Navbar = ({ setShowLogin }) => {
         </a>
       </ul>
       {/* navbar right */}
-      <div className=" flex items-center gap-5 sm:gap-[20px] md:gap-[30px] lg:gap-[40px]">
-        {/* search */}
-        <img src={assets.search_icon} alt="" />
+      <div className=" flex items-center gap-4 sm:gap-[20px] md:gap-[30px] lg:gap-[40px]">
         {/* shopping basket */}
         <div className=" relative">
           <Link to={"/cart"}>
-            <img src={assets.basket_icon} alt="" />
+            <LiaShoppingCartSolid
+              className={`${
+                isActive ? "text-slate-900" : " text-green-700 "
+              } text-green-700 text-4xl`}
+            />
           </Link>
           <div
             className={` ${
               getTotalCartAmount() === 0
                 ? " hidden"
-                : "absolute h-4 w-4 bg-red-500 -top-2 -right-4 rounded-full flex items-center justify-center text-white p-2"
+                : "absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"
             }`}
-          >
-            
-          </div>
+          ></div>
         </div>
+
         {/* button */}
-        <button
-          onClick={() => setShowLogin(true)}
-          className=" bg-transparent text-[16px] text-purple-900 rounded-full border border-red-500 px-4 py-2 sm:px-[30px] sm:py-[10px] transition duration-300 hover:bg-slate-200"
-        >
-          Sign in
-        </button>
+        {!token ? (
+          <button
+            onClick={() => setShowLogin(true)}
+            className="text-white bg-green-700 rounded-full py-1 px-2  text-center transition duration-300 hover:bg-black"
+          >
+            Sign in
+          </button>
+        ) : (
+          <div className="relative group ">
+            <CgProfile
+              className={`${
+                isActive ? "text-slate-900" : " text-green-700 "
+              } text-green-700 text-4xl`}
+            />
+            {/* orders and logout dropdown */}
+            <ul className=" absolute right-0 z-10 hidden group-hover:flex flex-col gap-[10px] bg-green-100 py-2 px-2 rounded-md border border-black outline-2 w-24">
+              <Link to={"/myorders"}>
+                <button className="flex items-center gap-1 hover:text-red-500 ">
+                  <BsHandbag className="text-neutral-900 text-2xl" />
+                  <p>Orders</p>
+                </button>
+              </Link>
+              <hr className="border" />
+              <button
+                onClick={logout}
+                className="flex items-center gap-1 hover:text-red-500"
+              >
+                <TbLogout className="text-2xl text-neutral-900" />
+                <p>Logout</p>
+              </button>
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );

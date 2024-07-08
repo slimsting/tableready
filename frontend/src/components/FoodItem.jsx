@@ -4,15 +4,16 @@ import { StoreContext } from "../Context/StoreContext";
 
 const FoodItem = ({ item }) => {
   const { _id, name, price, description, image } = item;
-  const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
+  const { cartItems, addToCart, removeFromCart, url } =
+    useContext(StoreContext);
 
   return (
-    <div className=" w-full m-auto rounded-md shadow-xl animate-fadeIn transition-all">
+    <div className=" w-full m-auto rounded-md  shadow-lg animate-fadeIn transition-all">
       {/* food item image */}
       <div className=" relative">
         <img
-          className="w-full rounded-t-2xl "
-          src={image}
+          className="w-full rounded-t-md "
+          src={url + "/images/" + image}
           alt={`${name} image`}
         />
 
@@ -41,8 +42,9 @@ const FoodItem = ({ item }) => {
           </div>
         )}
       </div>
+
       {/* food item information */}
-      <div className="p-4">
+      <div className="p-8">
         {/* name and rating */}
         <div className="flex items-center justify-between mb-[10px]">
           <p className="font-medium text-[20px]">{name}</p>

@@ -3,19 +3,19 @@ import { StoreContext } from "../Context/StoreContext";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { cartItems, food_list, removeFromCart, getTotalCartAmount } =
+  const { cartItems, food_list, removeFromCart, getTotalCartAmount, url } =
     useContext(StoreContext);
 
   const navigate = useNavigate();
 
   return (
-    <div className="mt-[100px]">
+    <div className="p-4">
       {/* cart items */}
       <div>
         {/* cart items title */}
-        <div className=" grid grid-cols-7 items-center text-gray-500  md:text-[1.25rem]">
+        <div className=" grid grid-cols-cart gap-2 items-center text-gray-500  md:text-[1.25rem]">
           <p>Items</p>
-          <p className=" col-span-2">Title</p>
+          <p>Title</p>
           <p>Price</p>
           <p>Quantity </p>
           <p>Total</p>
@@ -28,15 +28,15 @@ const Cart = () => {
             return (
               <>
                 <div
-                  className=" grid grid-cols-7 items-center text-black text-[1rem] my-[10px] "
+                  className=" grid grid-cols-cart gap-2 items-center text-black text-[1rem] my-[10px] "
                   key={index}
                 >
                   <img
                     className="w-[50px]"
-                    src={foodItem.image}
+                    src={url + "/images/" + foodItem.image}
                     alt={`${foodItem.name} image`}
                   />
-                  <p className=" col-span-2">{foodItem.name}</p>
+                  <p>{foodItem.name}</p>
                   <p>$ {foodItem.price}</p>
                   <p>{cartItems[foodItem._id]}</p>
                   <p>{foodItem.price * cartItems[foodItem._id]}</p>
@@ -67,17 +67,19 @@ const Cart = () => {
             <hr className=" my-[10px]" />
             <div className=" justify-between flex text-[#555]">
               <p>Deliverly Fee</p>
-              <p>$ {2}</p>
+              <p>$ {getTotalCartAmount() === 0 ? 0 : 2}</p>
             </div>
             <hr className=" my-[10px]" />
             <div className=" justify-between flex text-[#555]">
               <p>Total</p>
-              <p>$ {getTotalCartAmount() + 2}</p>
+              <p>
+                $ {getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}
+              </p>
             </div>
           </div>
           <button
             onClick={() => navigate("/order")}
-            className=" text-white bg-red-500 py-[12px] rounded-lg w-[30vw]"
+            className=" text-white bg-red-500 py-[12px] rounded-lg w-full "
           >
             PROCEED TO CHECKOUT
           </button>
@@ -95,7 +97,7 @@ const Cart = () => {
                 type="text"
                 placeholder="promo code"
               />
-              <button className=" w-[15vw] py-[12px] px-[5px] bg-black text-white rounded-lg">
+              <button className=" sm:w-[15vw] py-2 px-3 bg-black text-white rounded-r-lg">
                 Submit
               </button>
             </div>
