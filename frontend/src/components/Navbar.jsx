@@ -28,9 +28,7 @@ const Navbar = ({ setShowLogin }) => {
   return (
     <div
       className={` ${
-        isActive
-          ? "   bg-white  drop-shadow-md h-[80px]"
-          : "h-[80px] bg-white"
+        isActive ? "   bg-white  drop-shadow-md h-[80px]" : "h-[80px] bg-white"
       } fixed flex justify-between  items-center gap-2 py-4 md:px-8 xl:px-12 z-20 w-full px-2 `}
     >
       {/* logo */}
@@ -60,7 +58,7 @@ const Navbar = ({ setShowLogin }) => {
               : ""
           } cursor-pointer`}
         >
-          home
+          Home
         </Link>
         <a
           href="#explore-menu"
@@ -71,7 +69,7 @@ const Navbar = ({ setShowLogin }) => {
               : ""
           } cursor-pointer`}
         >
-          menu
+          Menu
         </a>
 
         <a
@@ -87,7 +85,7 @@ const Navbar = ({ setShowLogin }) => {
         </a>
       </ul>
       {/* navbar right */}
-      <div className=" flex items-center gap-4 sm:gap-[20px] md:gap-[30px] lg:gap-[40px]">
+      <div className=" flex items-center gap-3">
         {/* shopping basket */}
         <div className=" relative">
           <Link to={"/cart"}>
@@ -110,7 +108,7 @@ const Navbar = ({ setShowLogin }) => {
         {!token ? (
           <button
             onClick={() => setShowLogin(true)}
-            className="text-white bg-green-700 rounded-full py-1 px-2  text-center transition duration-300 hover:bg-black"
+            className="text-white bg-green-700 rounded-full py-2 px-4  text-center transition duration-300 hover:bg-green-600"
           >
             Sign in
           </button>
@@ -122,7 +120,7 @@ const Navbar = ({ setShowLogin }) => {
               } text-green-700 text-4xl`}
             />
             {/* orders and logout dropdown */}
-            <ul className=" absolute right-0 z-10 hidden group-hover:flex flex-col gap-[10px] bg-green-100 py-2 px-2 rounded-md border border-black outline-2 w-24">
+            <ul className=" absolute right-0 z-10 hidden group-hover:flex flex-col gap-[10px] bg-white py-2 px-2 rounded-md border border-black outline-2 w-24">
               <Link to={"/myorders"}>
                 <button className="flex items-center gap-1 hover:text-red-500 ">
                   <BsHandbag className="text-neutral-900 text-2xl" />

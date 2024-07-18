@@ -48,7 +48,7 @@ const FoodItem = ({ item }) => {
         {/* name and rating */}
         <div className="flex items-center justify-between mb-[10px]">
           <p className="font-medium text-[20px]">{name}</p>
-          <img src={assets.rating_starts} alt="rating stars" />
+          {/* <img src={assets.rating_starts} alt="rating stars" /> */}
         </div>
         {/* food item description */}
         <p className=" text-slate-500 text-sm">{description}</p>

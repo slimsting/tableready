@@ -9,7 +9,7 @@ const Cart = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="p-4">
+    <div className="p-4 sm:p-12 ">
       {/* cart items */}
       <div>
         {/* cart items title */}
@@ -54,29 +54,33 @@ const Cart = () => {
         })}
       </div>
       {/* cart bottom */}
-      <div className=" mt-[80px] flex justify-between gap-4 flex-col-reverse md:flex-row ">
+      <div className=" mt-[80px] flex justify-between gap-10 flex-col-reverse md:flex-row ">
         {/* cart total */}
-        <div className=" flex-1 flex flex-col gap-2">
+        <div className=" flex-1 flex flex-col gap-2 ">
           <div>
-            <h2>Cart Totals</h2>
+            <h2 className=" font-semibold mb-4">Cart Totals</h2>
             {/* cart total details */}
+            {/* subtotal */}
             <div className=" justify-between flex text-[#555]">
               <p>Subtotal</p>
               <p>$ {getTotalCartAmount()}</p>
             </div>
             <hr className=" my-[10px]" />
+            {/* deliverly fee */}
             <div className=" justify-between flex text-[#555]">
               <p>Deliverly Fee</p>
               <p>$ {getTotalCartAmount() === 0 ? 0 : 2}</p>
             </div>
             <hr className=" my-[10px]" />
-            <div className=" justify-between flex text-[#555]">
+            {/* total */}
+            <div className=" justify-between flex text-[#555] mb-4">
               <p>Total</p>
               <p>
                 $ {getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}
               </p>
             </div>
           </div>
+
           <button
             onClick={() => navigate("/order")}
             className=" text-white bg-red-500 py-[12px] rounded-lg w-full "
@@ -93,7 +97,7 @@ const Cart = () => {
             {/* cart promo code input */}
             <div className="mt-[10px] flex justify-between items-center bg-[#eaeaea] rounded-lg">
               <input
-                className=" bg-transparent pl-[10px]"
+                className=" bg-transparent pl-[10px] focus:outline-none w-full mr-2"
                 type="text"
                 placeholder="promo code"
               />

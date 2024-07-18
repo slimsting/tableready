@@ -23,7 +23,7 @@ const MyOrders = () => {
   }, [token]);
 
   return (
-    <div className="p-4">
+    <div className="p-4 sm:p-12">
       <h2 className=" font-semibold">My Orders</h2>
       <div className="flex flex-col gap-[20px] mt-[30px]">
         {data.map((order, index) => {
@@ -50,7 +50,7 @@ const MyOrders = () => {
               </p>
               <button
                 onClick={fetchOrders}
-                className=" text-sm sm:text-base py-[12px] rounded-md bg-green-100 "
+                className=" text-sm sm:text-base py-[12px] rounded-md bg-green-100 hover:bg-green-200"
               >
                 Track Order
               </button>

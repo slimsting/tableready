@@ -67,11 +67,11 @@ const PlaceOrder = () => {
   return (
     <form
       onSubmit={placeOrder}
-      className=" flex flex-col sm:flex-row items-start justify-between gap-4 p-4 "
+      className=" flex flex-col sm:flex-row items-start justify-between gap-8 p-4 sm:p-12"
     >
       {/* place order left */}
-      <div className=" w-full max-w-[500px] ">
-        <p className=" text-2xl font-medium mb-[30px]">Deliverly infromation</p>
+      <div className=" w-full ">
+        <p className=" text-2xl font-medium mb-5">Deliverly infromation</p>
         {/* mult fields */}
         <div className=" flex gap-4">
           <input
@@ -163,10 +163,10 @@ const PlaceOrder = () => {
       </div>
 
       {/* place order right */}
-      <div className=" w-full  sm:max-w-[40%]">
+      <div className=" w-full">
         <div className=" flex-1 flex flex-col gap-2">
           <div>
-            <h2>Cart Totals</h2>
+            <h2 className=" font-medium text-2xl mb-4">Cart Totals</h2>
             {/* cart total details */}
             <div className=" justify-between flex text-[#555]">
               <p>Subtotal</p>

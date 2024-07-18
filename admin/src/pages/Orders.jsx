@@ -34,7 +34,7 @@ const Orders = ({ url }) => {
   }, []);
 
   return (
-    <div className="p-4 pb-24 bg-green-200">
+    <div className="p-4 pb-24">
       <h3 className=" font-semibold mb-2">Order page</h3>
       <div className="flex flex-col gap-2 ">
         {orders.map((order, index) => {

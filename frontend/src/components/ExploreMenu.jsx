@@ -1,14 +1,14 @@
 import { menu_list } from "../assets/assets";
 
 const ExploreMenu = ({ category, setCategory }) => {
-  console.log(category)
+  console.log(category);
   return (
     <div
       className=" flex items-center justify-center flex-col lg:flex-row gap-8 mt-4 p-4 lg:px-12 sm:px-10 "
       id="explore-menu"
     >
       <div className=" flex flex-col items-center justify-center lg:max-w-[40%] ">
-        <h1 className=" text-neutral-900 text-xl font-medium ">
+        <h1 className=" text-neutral-900 text-xl font-semibold ">
           Explore our weekly menu
         </h1>
         <p className="mt-4 text-center sm:max-w-[80%]">
@@ -17,14 +17,14 @@ const ExploreMenu = ({ category, setCategory }) => {
           experience, one delicious meal at a time.{" "}
         </p>
       </div>
-      <div className=" grid grid-cols-5 gap-2 place-items-center ">
+      <div className=" grid grid-cols-5 gap-2 lg:gap-4 place-items-center ">
         {menu_list.map((item, index) => {
           return (
+            // category item
             <div
-              className="py-4 flex items-center justify-center flex-col hover:scale-110 transition-all duration-300 hover:drop-shadow-sm"
+              className="py-4 flex items-center justify-center flex-col hover:scale-110 max-w-[150px]"
               onClick={() =>
                 setCategory((prev) =>
-                
                   prev === item.menu_name ? "All" : item.menu_name
                 )
               }
@@ -36,7 +36,7 @@ const ExploreMenu = ({ category, setCategory }) => {
                   category === item.menu_name
                     ? " border-4 border-green-700 animate-pulse"
                     : ""
-                } w-[7.5vw] min-w-[80px] cursor-pointer rounded-full transition duration-[0.2s]`}
+                } w-[15vw] sm:min-w-[80px] cursor-pointer rounded-full transition duration-[0.2s]`}
                 src={item.menu_image}
                 alt={item.menu_name}
               />

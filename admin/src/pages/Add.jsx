@@ -44,7 +44,7 @@ const Add = ({ url }) => {
   };
 
   return (
-    <div className=" bg-green-200 w-full min-h-screen p-4 text-[#6d6d6d] text-base">
+    <div className="  w-full min-h-screen p-4 text-[#6d6d6d] text-base">
       <form className=" gap-4 flex flex-col" onSubmit={onSubmitHandler}>
         {/* add image */}
         <div className="">

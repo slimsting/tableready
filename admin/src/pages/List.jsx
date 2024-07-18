@@ -31,7 +31,7 @@ const List = ({ url }) => {
     fetchList();
   }, []);
   return (
-    <div className=" p-4 sm:p-8 bg-green-200 w-[80%] gap-2">
+    <div className=" p-4 sm:p-8  w-[80%] gap-2">
       <p>All Foods List</p>
       {/* list table */}
       <div className="flex flex-col gap-1 ">
