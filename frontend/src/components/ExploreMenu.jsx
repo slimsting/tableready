@@ -4,7 +4,7 @@ const ExploreMenu = ({ category, setCategory }) => {
   console.log(category);
   return (
     <div
-      className=" flex items-center justify-center flex-col lg:flex-row gap-8 mt-4 p-4 lg:px-12 sm:px-10 "
+      className=" flex h-[60vh] items-center justify-center flex-col lg:flex-row gap-8 mt-4 p-4 lg:px-12 sm:px-10 "
       id="explore-menu"
     >
       <div className=" flex flex-col items-center justify-center lg:max-w-[40%] ">

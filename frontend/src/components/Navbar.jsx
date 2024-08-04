@@ -28,7 +28,7 @@ const Navbar = ({ setShowLogin }) => {
   return (
     <div
       className={` ${
-        isActive ? "   bg-white  drop-shadow-md h-[80px]" : "h-[80px] bg-white"
+        isActive ? "   bg-white bg-opacity-50 backdrop-blur-sm  drop-shadow-md h-[80px]" : "h-[80px] bg-white"
       } fixed flex justify-between  items-center gap-2 py-4 md:px-8 xl:px-12 z-20 w-full px-2 `}
     >
       {/* logo */}
